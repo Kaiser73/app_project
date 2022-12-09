@@ -1,4 +1,3 @@
-
 from operator import contains
 import streamlit as st 
 import pandas as pd
@@ -65,7 +64,7 @@ top_rec.set_index('Titles', inplace=True)
 
 
 st.subheader('Recommended by Ratings')
-st.write(top_rec)
+st.table(top_rec)
 
 
 
