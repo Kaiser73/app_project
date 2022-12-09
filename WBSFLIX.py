@@ -1,4 +1,5 @@
 
+from operator import contains
 import streamlit as st 
 import pandas as pd
 import numpy as np
@@ -62,29 +63,30 @@ ranking = ranking.loc[ranking['Total Reviews']>30]
 top_rec = ranking.sort_values("Rating", ascending=False).head(my_sld_val)
 top_rec.set_index('Titles', inplace=True)
 
+
 st.subheader('Recommended by Ratings')
 st.write(top_rec)
 
 
 
 Genre_all = ranking.Genre
-Genre_all = list(Genre_all.str.split(','))
-list_genre= []
+Genre_all = list(Genre_all.str.split('|'))
+list_genre= ['']
 for i in Genre_all:
     for j in i:
         list_genre.append(j)
 
-genre_df = pd.DataFrame(list_genre)
 
+genre_df = pd.DataFrame(list_genre).drop_duplicates()
 Genres = list(genre_df[0])
 
 genre = st.selectbox(f'What Movie Genre do want to watch {name}?', options=Genres)
 
 def gen_rec(genre,my_sld_val):
     for i in ranking.Genre:
-        if i == genre:
+        if genre in i:
             top_genre = ranking.loc[ranking.Genre.str.contains(i),
-            ['Titles','Rating','Total Reviews','Release Year']].nlargest(my_sld_val,'Total Reviews').sort_values('Rating', ascending=False)
+            ['Titles','Total Reviews','Rating','Release Year']].nlargest(my_sld_val,'Total Reviews').sort_values('Rating', ascending=False)
             top_genre.set_index('Titles', inplace=True)
     return top_genre
 
