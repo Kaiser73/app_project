@@ -4,10 +4,10 @@ import pandas as pd
 import numpy as np
 from PIL import Image
 
-top = Image.open(r"C:\Users\ousse\OneDrive\Bureau\Bootcamp\web.png")
-sec = Image.open(r"C:\Users\ousse\OneDrive\Bureau\Bootcamp\rec.png")
+top = Image.open(r"web.png")
+sec = Image.open(r"rec.png")
 
-audio_file = open(r"C:\Users\ousse\Downloads\ES_Moonbase - Anthony Earls.mp3",'rb')
+audio_file = open(r'ES_Moonbase - Anthony Earls.mp3','rb')
 audio_byte = audio_file.read()
 st.audio(audio_byte, format='audio/ogg')
 
@@ -37,8 +37,8 @@ with col3:
     st.write('')
 
 
-movies = pd.read_csv(r'C:\Users\ousse\OneDrive\Bureau\Bootcamp\ml-latest-small\movies.csv')
-ratings = pd.read_csv(r'C:\Users\ousse\OneDrive\Bureau\Bootcamp\ml-latest-small\ratings.csv')
+movies = pd.read_csv(r'movies.csv')
+ratings = pd.read_csv(r'ratings.csv')
 
 
 name = st.text_input('Please write your Name :')
@@ -100,7 +100,7 @@ with col2:
 with col3:
     st.write('')
 
-video_file = open(r"C:\Users\ousse\OneDrive\Bureau\Bootcamp\mj1.mp4",'rb')
+video_file = open(r"mj1.mp4",'rb')
 video_byte = video_file.read()
 
 col1, col2, col3 = st.columns(3)
